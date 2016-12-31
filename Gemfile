@@ -38,6 +38,9 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'guard-rspec', require: false
 end
 
 group :development do
@@ -54,3 +57,13 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # https://github.com/plataformatec/devise
 gem 'devise'
+gem "haml-rails"
+gem 'bootstrap-sass'
+gem "font-awesome-rails"
+# https://github.com/amatsuda/kaminari
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+gem 'active_link_to'
+gem 'friendly_id'
+# https://github.com/plataformatec/simple_form
+gem 'simple_form'
