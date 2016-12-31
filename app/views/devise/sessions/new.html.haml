@@ -1,0 +1,11 @@
+= flash[:notice]
+= flash[:alert]
+%h2 Log in
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .form-inputs
+    = f.input :email, required: false, autofocus: true, input_html: { value: Rails.env.development? ? 'admin@example.com' : '' }
+    = f.input :password, required: false, input_html: { value: Rails.env.development? ? 'admin1' : '' }
+    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+  .form-actions
+    = f.button :submit, "Log in"
+= render "devise/shared/links"
