@@ -1,0 +1,6 @@
+.container
+  - if alert || notice
+    - if alert
+      .alert.alert-danger= alert
+    - if notice
+      .alert.alert-info= notice

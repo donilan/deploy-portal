@@ -1,0 +1,13 @@
+version: '2'
+services:
+  app:
+    build: .
+    # user: $UID:$GID
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/home/deploy/app
+    environment:
+      - RAILS_ENV=development
+      - DISABLE_DATABASE_ENVIRONMENT_CHECK=1
+      - BUNDLE_JOBS=4

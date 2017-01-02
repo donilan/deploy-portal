@@ -1,0 +1,19 @@
+.navbar.navbar-default
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %i.icon-reorder
+
+      = link_to 'Deploy Portal II', root_path, class: "navbar-brand"
+
+    .collapse.navbar-collapse
+      %ul.nav.navbar-nav.pull-right
+        - if current_user
+          %li
+            = link_to destroy_user_session_path, class: "logout", method: :delete do
+              %i.icon-signout
+              Logout
+        - else
+          %li
+            = link_to "Login", new_user_session_path, class: 'btn btn-success btn-login'

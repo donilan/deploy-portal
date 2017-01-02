@@ -1,0 +1,16 @@
+= simple_form_for(@task) do |f|
+  = f.error_notification
+
+  .form-inputs
+    .row
+      .col-md-6
+        = f.input :name
+      .col-md-6
+        = f.input :timeout
+    = f.association :env_group
+    = f.input :desc
+    ~ f.input :script, input_html: { rows: 14 }
+
+  .form-actions
+    = f.button :submit
+    = link_to 'Back', tasks_path, class: 'btn btn-default'

@@ -1,4 +1,5 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
+source 'https://gems.ruby-china.org'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -67,3 +68,5 @@ gem 'active_link_to'
 gem 'friendly_id'
 # https://github.com/plataformatec/simple_form
 gem 'simple_form'
+gem 'charlock_holmes', '0.6.9.4'
+gem 'childprocess', '0.3.6'

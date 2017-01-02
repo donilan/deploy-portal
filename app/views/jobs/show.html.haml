@@ -1,0 +1,8 @@
+%ol.breadcrumb
+  %li= link_to 'Tasks', tasks_url
+  %li= @task.name
+  %li= link_to 'Jobs', task_jobs_url(@task)
+  %li ##{@job.id}
+
+= job_status(@job)
+%pre.trace{ 'data-trace-url' => trace_task_job_url(@task, @job, format: 'json') }

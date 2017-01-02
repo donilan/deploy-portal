@@ -1,0 +1,14 @@
+.panel.panel-default
+  .panel-heading
+    Tasks
+    = link_to 'Add task', new_task_path, class: 'btn btn-xs btn-primary pull-right'
+  %table.table
+    %thead
+      %tr
+        %th User
+        %th Name
+        %th Desc
+        %th Status of last job
+        %th &nbsp;
+
+    %tbody{'data-tasks-index-url' => tasks_url(format: :js)}= render 'tasks'

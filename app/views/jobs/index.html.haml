@@ -1,0 +1,23 @@
+%ol.breadcrumb
+  %li= link_to 'Tasks', tasks_url
+  %li= @task.name
+  %li Jobs
+
+
+%table.table
+  %thead
+    %tr
+      %th Status
+      %th Job ID
+      %th User
+      %th Stated at
+      %th Finished at
+
+  %tbody
+    - @jobs.each do |job|
+      %tr
+        %td= job_status job
+        %td= link_to "\##{job.id}", task_job_path(@task, job)
+        %th= job.user.email
+        %td= job.started_at
+        %td= job.finished_at
