@@ -1,24 +1,26 @@
-# README
+Deploy Portal
+=============
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A tool to execute predefined script on script side.
 
-Things you may want to cover:
+## Who needs Deploy Portal?
 
-* Ruby version
+This tool makes for the one who like below:
 
-* System dependencies
+* There is one or more staging/testing server to update project all the time.
+* There is a QA team just want to provide them less permission to run perdefined script.
 
-* Configuration
+## requirements
 
-* Database creation
+* ruby 2.2.0+ to install rails 5
+* sqlite3 or other DB that rails supported
 
-* Database initialization
+## installation
 
-* How to run the test suite
+Checkout this project then execute the commands below step by step
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+``` bash
+gem install bundler
+bundle install --path vendor/bundle
+rails s -b 0.0.0.0
+```
