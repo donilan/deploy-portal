@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :env do
-    enviroment_group_id 1
-    key "MyString"
-    value "MyString"
+    sequence(:key) { |n| "KEY_#{n}" }
+    value "test_value"
   end
 end

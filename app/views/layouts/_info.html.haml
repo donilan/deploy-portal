@@ -1,6 +1,6 @@
 .container
   - if alert || notice
     - if alert
-      .alert.alert-danger= alert
+      .alert.alert-danger= alert.html_safe
     - if notice
-      .alert.alert-info= notice
+      .alert.alert-info= notice.html_safe

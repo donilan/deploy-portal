@@ -5,4 +5,14 @@ class EnvGroup < ApplicationRecord
   validates :name, uniqueness: true
   has_many :envs
   has_many :tasks
+
+  attr_accessor :import_log
+
+  def to_h
+    { name: name,
+      envs: envs.map { |env|
+        { key: env.key, value: env.value }
+      }
+    }
+  end
 end

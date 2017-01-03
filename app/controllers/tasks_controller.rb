@@ -11,11 +11,23 @@ class TasksController < ApplicationController
     end
   end
 
+  def show
+    respond_to do |format|
+      format.yaml { render body: @task.export }
+    end
+  end
+
   def run
     @job = @task.start_new_job(current_user)
     respond_to do |format|
       format.js
     end
+  end
+
+  def import
+    logs = Task.import_from_yaml_file(params[:task_import][:file], current_user)
+    flash[:notice] = logs.join("<br />")
+    redirect_to action: :index
   end
 
   def new

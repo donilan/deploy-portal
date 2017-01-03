@@ -1,7 +1,11 @@
 .panel.panel-default
   .panel-heading
     Tasks
-    = link_to 'Add task', new_task_path, class: 'btn btn-xs btn-primary pull-right'
+    .btn-group.pull-right
+      = link_to new_task_path, class: 'btn btn-xs btn-default' do
+        = fa_icon 'plus'
+        Add Task
+      = render 'upload_task'
   %table.table
     %thead
       %tr

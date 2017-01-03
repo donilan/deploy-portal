@@ -10,11 +10,14 @@
         = link_to run_task_path(task), class: 'btn btn-success btn-sm', method: :post, remote: true, title: 'run this task as a job' do
           = fa_icon 'play'
           Play
-        = link_to task_jobs_path(task), class: 'btn btn-primary btn-sm', title: 'Show all jobs that ran' do
+        = link_to task_jobs_path(task), class: 'btn btn-default btn-sm', title: 'Show all jobs that ran' do
           = fa_icon 'tasks'
           Jobs
         - if current_user.admin?
-          = link_to edit_task_path(task), class: 'btn btn-primary btn-sm', title: 'Edit this task' do
+          = link_to task_path(task, format: :yaml), class: 'btn btn-default btn-sm', title: 'Export this task' do
+            = fa_icon 'download'
+            Export
+          = link_to edit_task_path(task), class: 'btn btn-default btn-sm', title: 'Edit this task' do
             = fa_icon 'edit'
             Edit
           = link_to task, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-sm', title: 'Delete this task' do
