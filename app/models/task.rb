@@ -1,12 +1,16 @@
 require 'fileutils'
 
 class Task < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name
   belongs_to :user
   belongs_to :env_group
   has_many :jobs
   validates_format_of :name, with: /\A[a-z0-9\-_]+\Z/i
+  validates :name, uniqueness: true
 
   before_save :generate_all_scripts
+  before_create :make_sure_author
 
   def start_new_job(user)
     job = jobs.create(user: user)
@@ -55,5 +59,11 @@ class Task < ApplicationRecord
 
   def tasks_path
     Rails.root.join('tasks').to_s
+  end
+  protected
+  def make_sure_author
+    if self.author.blank?
+      self.author = user.email
+    end
   end
 end

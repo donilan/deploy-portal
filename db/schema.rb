@@ -41,12 +41,15 @@ ActiveRecord::Schema.define(version: 20170101163909) do
   create_table "tasks", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
+    t.string   "author"
+    t.string   "version",      default: "1.0"
+    t.boolean  "admin_only"
     t.integer  "timeout",      default: 60
     t.integer  "env_group_id"
     t.text     "desc"
     t.text     "script"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["env_group_id"], name: "index_tasks_on_env_group_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
