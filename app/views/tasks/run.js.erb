@@ -1,1 +1,2 @@
-$('[data-column-id=task-<%=@task.id %>-job]').html('<%= j(job_status(@job)) %>')
+$('[data-column-id=task-<%=@task.id %>-job]').html('<%= j(job_status(@job)) %>');
+$('.jobs-tbody').html('<%= j(render 'jobs/jobs') %>');

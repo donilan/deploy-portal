@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     @tasks = Task.all
+    @jobs = Job.first(10)
     respond_to do |format|
       format.html
       format.js
@@ -19,6 +20,7 @@ class TasksController < ApplicationController
 
   def run
     @job = @task.start_new_job(current_user)
+    @jobs = Job.first(10)
     respond_to do |format|
       format.js
     end

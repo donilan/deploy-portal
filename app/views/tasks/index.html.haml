@@ -1,18 +1,27 @@
-.panel.panel-default
-  .panel-heading
-    Tasks
-    .btn-group.pull-right
-      = link_to new_task_path, class: 'btn btn-xs btn-default' do
-        = fa_icon 'plus'
-        Add Task
-      = render 'upload_task'
-  %table.table
-    %thead
-      %tr
-        %th Creator
-        %th Name
-        %th Desc
-        %th Status of last job
-        %th &nbsp;
+.row
+  .col-md-2
+    .panel.panel-default
+      .panel-heading
+        Jobs
+      %table.table
+        %tbody.jobs-tbody= render 'jobs/jobs'
+  .col-md-10
+    .panel.panel-default
+      .panel-heading
+        Tasks
+        .btn-group.pull-right
+          = link_to new_task_path, class: 'btn btn-xs btn-default' do
+            = fa_icon 'plus'
+            Add Task
+          = render 'upload_task'
+      %table.table
+        %thead
+          %tr
+            %th Author
+            %th Version
+            %th Name
+            %th Desc
+            %th Status
+            %th Operations
 
-    %tbody{'data-tasks-index-url' => tasks_url(format: :js)}= render 'tasks'
+        %tbody{'data-tasks-index-url' => tasks_url(format: :js)}= render 'tasks'

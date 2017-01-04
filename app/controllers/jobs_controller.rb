@@ -22,6 +22,6 @@ class JobsController < ApplicationController
     end
 
     def set_task
-      @task = Task.find(params[:task_id])
+      @task = Task.friendly.find(params[:task_id])
     end
 end

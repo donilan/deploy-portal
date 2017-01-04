@@ -1,0 +1,4 @@
+- @jobs.each do |job|
+  %tr
+    %td= link_to "\##{job.id}", task_job_path(job.task, job)
+    %td= job_status job

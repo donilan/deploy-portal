@@ -18,7 +18,7 @@ class Task < ApplicationRecord
   def start_new_job(user)
     raise Expcetion.new('You don\'t have permission to run this task') if admin_only? && !user.admin?
     job = jobs.create(user: user)
-    Runner.current.run job
+    Runner.instance.run job
     job
   end
 

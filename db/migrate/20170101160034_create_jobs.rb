@@ -4,7 +4,6 @@ class CreateJobs < ActiveRecord::Migration[5.0]
       t.integer :task_id
       t.string :status
       t.datetime :finished_at
-      t.text :trace
       t.datetime :started_at
       t.integer :user_id
 
