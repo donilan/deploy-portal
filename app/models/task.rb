@@ -15,8 +15,13 @@ class Task < ApplicationRecord
 
   attr_reader :import_logs
 
+  def timeout
+    env_group && env_group.envs.find_by(key: 'TIMEOUT').try(:value)
+  end
+
   def start_new_job(user)
-    raise Expcetion.new('You don\'t have permission to run this task') if admin_only? && !user.admin?
+    raise Expcetion.new('You don\'t have permission to run this task.') if admin_only? && !user.admin?
+    raise Exception.new('There is a job is running. please wait that job finish and try again.') if Runner.instance.running?
     job = jobs.create(user: user)
     Runner.instance.run job
     job
@@ -32,8 +37,8 @@ class Task < ApplicationRecord
     f = open(script_path, 'w+')
     f.chmod(0700)
     f.puts %|#!/bin/bash|
-    f.puts %|set -e|
-    f.puts %|trap 'kill -s INT 0' EXIT|
+    # f.puts %|set -e|
+    # f.puts %|trap 'kill -s INT 0' EXIT|
     env_group && env_group.envs.each do |env|
       f.puts %|export #{env.key}="#{env.value}"|
     end

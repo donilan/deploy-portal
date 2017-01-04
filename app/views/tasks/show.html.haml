@@ -1,0 +1,25 @@
+%ol.breadcrumb
+  %li= link_to 'Tasks', tasks_url
+  %li= @task.name
+
+%p This task #{@task.name} version #{@task.version} was created by #{@task.author} and imported by #{@task.user.email}.
+
+%p Desc: #{@task.desc}
+
+- if current_user.admin?
+  %h3 API url
+  - if current_user.api_token
+    %pre= api_tasks_run_url(@task, token: current_user.api_token)
+  - else
+    %p
+      Please go to
+      = link_to 'here', user_path
+      to enable API url
+
+%h3 Pre-script
+%pre
+  %code.bash><= File.read @task.script_path
+
+%h3 Raw-script
+%pre
+  %code.bash><= File.read @task.raw_script_path

@@ -26,12 +26,11 @@ class Runner
     }
   end
 
-  protected
-
   def running?
     @current_build
   end
 
+  protected
   def abort_if_timeout
     if @current_build.running? && @current_build.running_too_long?
       @current_build.timeout_abort
@@ -43,10 +42,6 @@ class Runner
     Rails.logger.info "#{Time.now.to_s} | Completed build #{@current_build.id}, #{@current_build.state}."
     Job.find(@current_build.id).update_attributes(finished_at: Time.now, status: @current_build.state)
     @current_build = nil
-  end
-
-  def network
-    @network ||= Network.new
   end
 
 end

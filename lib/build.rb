@@ -5,7 +5,7 @@ require 'bundler'
 require 'shellwords'
 
 class Build
-
+  TIMEOUT = 120
   attr_accessor :id
   attr_reader :job
   delegate :task, to: :job
@@ -13,7 +13,7 @@ class Build
   def initialize(job)
     @job = job
     @id = @job.id
-    @timeout = task.timeout
+    @timeout = task.timeout || TIMEOUT
     @run_at = Time.now
   end
 
@@ -75,7 +75,8 @@ class Build
     @process.io.stderr = @log_file
     # @process.cwd = project_dir
 
-    task.env_group.envs.each do |env|
+    # TODO: need a better way to set envs
+    task.env_group && task.env_group.envs.each do |env|
       @process.environment[env.key] = env.value
     end
     @process.start

@@ -1,0 +1,15 @@
+---
+:env_group: {}
+:task:
+  :name: heath-check
+  :desc: This script will detect system informations and print out, you can run this
+    script via feature "API token" and get informations without login to Deploy Portal.
+  :admin_only: true
+  :author: doni.leong@gmail.com
+  :version: '1.0'
+  :script: "#!/usr/bin/env bash\r\n\r\necho ==uname==\r\nuname -a\r\n\r\necho ==meminfo==\r\ncat
+    /proc/meminfo 2> /dev/null\r\n\r\necho ==cpuinfo==\r\ncat /proc/cpuinfo 2> /dev/null\r\n\r\necho
+    ==rvm==\r\nrvm list 2> /dev/null\r\n\r\necho ==ruby==\r\nruby -v 2> /dev/null\r\n\r\necho
+    ==rails==\r\nrails -v 2> /dev/null\r\n\r\necho ==god==\r\ngod status 2> /dev/null\r\n\r\necho
+    ==python==\r\npython --version 2> /dev/null\r\n\r\necho ==nodejs==\r\nnode -v
+    2> /dev/null\r\n\r\necho ==npm==\r\nnpm -v 2> /dev/null\r\n\r\n"

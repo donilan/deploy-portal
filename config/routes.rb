@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post :refresh_api_token
     end
   end
+  resources :enviroments
   resources :tasks do
     member do
       post :run
@@ -20,4 +21,8 @@ Rails.application.routes.draw do
     end
   end
   root to: redirect('tasks')
+
+  namespace :api do
+    get 'tasks/:id/run' => 'tasks#run', as: 'tasks_run'
+  end
 end

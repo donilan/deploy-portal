@@ -14,6 +14,7 @@ class TasksController < ApplicationController
 
   def show
     respond_to do |format|
+      format.html
       format.yaml { render body: @task.export }
     end
   end
@@ -21,9 +22,10 @@ class TasksController < ApplicationController
   def run
     @job = @task.start_new_job(current_user)
     @jobs = Job.first(10)
-    respond_to do |format|
-      format.js
-    end
+    redirect_to action: :index
+  rescue => e
+    flash[:alert]= e.message
+    redirect_to action: :index
   end
 
   def import
