@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20170101163909) do
     t.integer  "task_id"
     t.string   "status"
     t.datetime "finished_at"
-    t.text     "trace"
     t.datetime "started_at"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
@@ -43,8 +42,7 @@ ActiveRecord::Schema.define(version: 20170101163909) do
     t.string   "name"
     t.string   "author"
     t.string   "version",      default: "1.0"
-    t.boolean  "admin_only"
-    t.integer  "timeout",      default: 60
+    t.boolean  "admin_only",   default: true
     t.integer  "env_group_id"
     t.text     "desc"
     t.text     "script"
@@ -72,6 +70,7 @@ ActiveRecord::Schema.define(version: 20170101163909) do
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.string   "api_token"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.boolean  "admin"

@@ -1,8 +1,8 @@
 - @tasks.each do |task|
   %tr
+    %td= task.name
     %td= task.author
     %td= task.version
-    %td= task.name
     %td= task.desc
     %td{'data-column-id' => "task-#{task.id}-job"}
       = job_status task.jobs.first

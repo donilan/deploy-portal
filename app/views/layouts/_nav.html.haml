@@ -11,8 +11,12 @@
       %ul.nav.navbar-nav.pull-right
         - if current_user
           %li
+            = link_to user_path do
+              = fa_icon('cog')
+              Settings
+          %li
             = link_to destroy_user_session_path, class: "logout", method: :delete do
-              %i.icon-signout
+              = fa_icon('sign-out')
               Logout
         - else
           %li

@@ -1,0 +1,20 @@
+.row
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        API Token
+      .panel-body
+        = simple_form_for(current_user, url: refresh_api_token_user_path, method: :post) do |f|
+          = f.input :api_token, input_html: { readonly: true }
+          = button_tag type: 'submit', class: 'btn btn-primary' do
+            Rrefresh your token
+  .col-md-6
+    .panel.panel-default
+      .panel-heading
+        Change Password
+      .panel-body
+        = simple_form_for(current_user) do |f|
+          = f.input :password
+          = f.input :password_confirmation
+          = button_tag type: 'submit', class: 'btn btn-primary' do
+            Confirm

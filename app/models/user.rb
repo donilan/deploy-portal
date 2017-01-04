@@ -6,4 +6,10 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable
   has_many :tasks
   has_many :jobs
+
+  def refresh_api_token
+    raw, enc = Devise.token_generator.generate(self.class, :api_token)
+    self.api_token = enc
+    save(validate: false)
+  end
 end
