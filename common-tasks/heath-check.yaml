@@ -1,5 +1,9 @@
 ---
-:env_group: {}
+:env_group:
+  :name: health-check
+  :envs:
+  - :key: TIMEOUT
+    :value: '10'
 :task:
   :name: heath-check
   :desc: This script will detect system informations and print out, you can run this
@@ -7,9 +11,36 @@
   :admin_only: true
   :author: doni.leong@gmail.com
   :version: '1.0'
-  :script: "#!/usr/bin/env bash\r\n\r\necho ==uname==\r\nuname -a\r\n\r\necho ==meminfo==\r\ncat
-    /proc/meminfo 2> /dev/null\r\n\r\necho ==cpuinfo==\r\ncat /proc/cpuinfo 2> /dev/null\r\n\r\necho
-    ==rvm==\r\nrvm list 2> /dev/null\r\n\r\necho ==ruby==\r\nruby -v 2> /dev/null\r\n\r\necho
-    ==rails==\r\nrails -v 2> /dev/null\r\n\r\necho ==god==\r\ngod status 2> /dev/null\r\n\r\necho
-    ==python==\r\npython --version 2> /dev/null\r\n\r\necho ==nodejs==\r\nnode -v
-    2> /dev/null\r\n\r\necho ==npm==\r\nnpm -v 2> /dev/null\r\n\r\n"
+  :update_url: https://raw.githubusercontent.com/donilan/deploy-portal/master/common-tasks/heath-check.yaml
+  :script: |-
+    #!/usr/bin/env bash
+
+    echo ==uname==
+    uname -a
+
+    echo ==meminfo==
+    cat /proc/meminfo 2> /dev/null
+
+    echo ==cpuinfo==
+    cat /proc/cpuinfo 2> /dev/null
+
+    echo ==rvm==
+    rvm list 2> /dev/null
+
+    echo ==ruby==
+    ruby -v 2> /dev/null
+
+    echo ==rails==
+    rails -v 2> /dev/null
+
+    echo ==god==
+    god status 2> /dev/null
+
+    echo ==python==
+    python --version 2> /dev/null
+
+    echo ==nodejs==
+    node -v 2> /dev/null
+
+    echo ==npm==
+    npm -v 2> /dev/null

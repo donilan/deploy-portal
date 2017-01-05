@@ -57,7 +57,8 @@ class Task < ApplicationRecord
     FileUtils.mkdir_p(raw_path) unless File.exist?(raw_path)
     f = open(raw_script_path, 'w+')
     f.chmod(0750)
-    f.write self.script.gsub("\r", '')
+    self.script = self.script.gsub("\r", '')
+    f.write self.script
     f.close
   end
 
@@ -131,7 +132,7 @@ class Task < ApplicationRecord
       env_group: env_group.to_h,
       task: {
         name: name, desc: desc, admin_only: admin_only, author: author,
-        version: version, script: script
+        version: version, update_url: update_url, script: script
       }
     }
   end
