@@ -82,11 +82,15 @@ class Task < ApplicationRecord
     Gem::Version.new(version) > Gem::Version.new(ver)
   end
 
+  def version_less_than(ver)
+    Gem::Version.new(version) < Gem::Version.new(ver)
+  end
+
   def self.import(hash, user)
     import_log = []
-    task = Task.find_by(name: hash[:task][:name])
     attrs = hash[:task]
-    if task && !task.version_greater_than(attrs[:version])
+    task = Task.find_by(name: attrs[:name])
+    if task && !task.version_less_than(attrs[:version])
       return ["task #{attrs[:name]} version #{attrs[:version]} is less or equals than #{task.version}, Ignored."]
     end
     group = EnvGroup.find_by(name: hash[:env_group][:name]) if hash[:env_group]

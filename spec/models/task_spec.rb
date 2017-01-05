@@ -19,6 +19,7 @@ RSpec.describe Task, type: :model do
   it 'compare with version' do
     t = Task.new(version: '1.0')
     expect(t.version_greater_than('0.1')).to be_truthy
+    expect(t.version_greater_than('0.9')).to be_truthy
     expect(t.version_greater_than('1.0')).to be_falsey
     expect(t.version_greater_than('1.1')).to be_falsey
     expect(t.version_greater_than('2.0')).to be_falsey

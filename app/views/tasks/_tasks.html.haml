@@ -15,5 +15,7 @@
             = fa_icon 'download'
           = link_to edit_task_path(task), class: 'btn btn-default btn-xs', title: 'Edit this task' do
             = fa_icon 'edit'
+          = link_to import_from_url_tasks_path({task_import: {url: task.update_url}}), method: :post, class: 'btn btn-default btn-xs', title: 'Update this task' do
+            = fa_icon 'refresh'
           = link_to task, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs', title: 'Delete this task' do
             = fa_icon 'remove'
