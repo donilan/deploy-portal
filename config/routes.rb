@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, only: [:session]
+  devise_for :users, only: [:session, :omniauth_callbacks], :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
 
   resource :user do
     member do
