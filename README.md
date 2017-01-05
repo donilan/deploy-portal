@@ -38,4 +38,4 @@ rails s -b 0.0.0.0
 ## TODOs
 
 * downgrade to lower version of rails, so that can use lower version ruby, this is very important
-* Send email after a job finished
+

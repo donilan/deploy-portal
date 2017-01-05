@@ -1,6 +1,8 @@
 # config/app.yml for rails-settings-cached
 defaults: &defaults
   site: Deploy Portal II
+  notifiers: d@example.com,devops@example.com
+  email_from: devops@example.com
   gitlab_app_id: <%= ENV['GITLAB_KEY'] %>
   gitlab_secret: <%= ENV['GITLAB_SECRET'] %>
   # https://gitlab.YOURDOMAIN.com

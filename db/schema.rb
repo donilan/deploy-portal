@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20170105145102) do
     t.integer  "user_id"
     t.string   "name"
     t.string   "author"
+    t.boolean  "notify"
     t.string   "version",      default: "1.0"
     t.boolean  "admin_only",   default: true
     t.integer  "env_group_id"

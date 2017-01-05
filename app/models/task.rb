@@ -4,6 +4,7 @@ require 'open-uri'
 
 class Task < ApplicationRecord
   extend FriendlyId
+  TIMEOUT = 120
   friendly_id :name
   belongs_to :user
   belongs_to :env_group
@@ -19,7 +20,7 @@ class Task < ApplicationRecord
   attr_reader :import_logs
 
   def timeout
-    env_group && env_group.envs.find_by(key: 'TIMEOUT').try(:value)
+    (env_group && env_group.envs.find_by(key: 'TIMEOUT').try(:value) || TIMEOUT).to_i
   end
 
   def cwd

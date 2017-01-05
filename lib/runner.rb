@@ -40,7 +40,15 @@ class Runner
   def update_build
     return unless @current_build.completed?
     Rails.logger.info "#{Time.now.to_s} | Completed build #{@current_build.id}, #{@current_build.state}."
-    Job.find(@current_build.id).update_attributes(finished_at: Time.now, status: @current_build.state)
+    job = Job.find(@current_build.id)
+    job.update_attributes(finished_at: Time.now, status: @current_build.state)
+    if job.task.notify?
+      if @current_build.failed?
+        JobMailer.fail_mail(job).deliver_later
+      else
+        JobMailer.success_mail(job).deliver_later
+      end
+    end
     @current_build = nil
   end
 
