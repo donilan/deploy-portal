@@ -39,6 +39,15 @@ class TasksController < ApplicationController
     redirect_to action: :index
   end
 
+  def import_from_url
+    logs = Task.import_from_url(params[:task_import][:url], current_user)
+    flash[:notice] = logs.join("<br />")
+  rescue => e
+    flash[:alert] = e.message
+  ensure
+    redirect_to action: :index
+  end
+
   def new
     @task = Task.new
   end
@@ -87,6 +96,6 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:user_id, :name, :desc, :script, :env_group_id, :timeout,
-                                   :version, :author, :admin_only)
+                                   :version, :author, :admin_only, :udpate_url)
     end
 end

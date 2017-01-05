@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105035132) do
+ActiveRecord::Schema.define(version: 20170105145102) do
 
   create_table "env_groups", force: :cascade do |t|
     t.string   "name"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20170105035132) do
     t.text     "script"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "update_url"
     t.index ["env_group_id"], name: "index_tasks_on_env_group_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end

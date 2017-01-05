@@ -1,5 +1,5 @@
 %a.btn.btn-xs.btn-default{ href: 'javascript: void(0);', 'onClick' => "$('#task_import_file').click() " }
   = fa_icon 'upload'
-  Upload a Task
-= form_for :task_import, url: import_tasks_path do |f|
+  Add Task from File
+= form_for :task_import, url: import_tasks_path, style: 'display: none;' do |f|
   = f.file_field :file, style: 'display: none;', onChange: 'this.form.submit()'

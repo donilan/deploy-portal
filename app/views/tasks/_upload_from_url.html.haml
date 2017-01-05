@@ -1,0 +1,17 @@
+%button.btn.btn-xs.btn-default{ 'data-toggle' => 'modal', 'data-target' => '#import-from-url-modal' }
+  = fa_icon 'link'
+  Add Task from URL
+#import-from-url-modal.modal.fade{ 'tabindex' => '-1', 'role' => 'modal' }
+  .modal-dialog{ 'role' => 'document' }
+    .modal-content
+      = form_for :task_import, url: import_from_url_tasks_path do |f|
+        .modal-header
+          %button.close{ 'data-dismiss' =>"modal", 'aria-label' => "Close" }
+            %span{ 'aria-hidden' => true } &times;
+          %h4.modal-title Entry task(YAML) url here
+          .modal-body
+            %label URL:
+            = f.text_field :url, type: 'text', class: 'form-control'
+          .modal-footer
+            %button.btn.btn-default{ 'data-dismiss' => 'modal' } Close
+            %button.btn.btn-default{ type: 'submit' } Import it!

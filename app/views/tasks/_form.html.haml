@@ -3,18 +3,20 @@
 
   .form-inputs
     .row
-      .col-md-4
+      .col-md-3
         = f.input :name
-      .col-md-4
+      .col-md-3
         = f.association :env_group
-      .col-md-4
+      .col-md-3
+        = f.input :author
+      .col-md-3
+        = f.input :version
+    .row
+      .col-md-3
         %br
         = f.input :admin_only
-    .row
-      .col-md-6
-        = f.input :author
-      .col-md-6
-        = f.input :version
+      .col-md-9
+        = f.input :update_url
 
     = f.input :desc
     ~ f.input :script, input_html: { rows: 14 }

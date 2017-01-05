@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     end
     collection do
       post :import
+      post :import_from_url
     end
     resources :jobs, only: [:show, :index, :create] do
       member do

@@ -1,11 +1,11 @@
 .row
-  .col-md-2
+  .col-md-2.col-sm-12
     .panel.panel-default
       .panel-heading
         Jobs
       %table.table
         %tbody.jobs-tbody= render 'jobs/jobs'
-  .col-md-10
+  .col-md-10.col-sm-12
     .panel.panel-default
       .panel-heading
         Tasks
@@ -13,15 +13,14 @@
           = link_to new_task_path, class: 'btn btn-xs btn-default' do
             = fa_icon 'plus'
             Add Task
+          = render 'upload_from_url'
           = render 'upload_task'
       %table.table
         %thead
           %tr
-            %th Name
-            %th Author
-            %th Version
-            %th{width: '25%'} Desc
-            %th Status
+            %th{ width: '25%' } Info
+            %th{ width: '25%' } Desc
+            %th Last Status
             %th Operations
 
         %tbody{'data-tasks-index-url' => tasks_url(format: :js)}= render 'tasks'

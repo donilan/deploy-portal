@@ -1,4 +1,6 @@
 require 'fileutils'
+require 'open-uri'
+
 
 class Task < ApplicationRecord
   extend FriendlyId
@@ -9,6 +11,7 @@ class Task < ApplicationRecord
   validates_format_of :name, with: /\A[a-z0-9\-_]+\Z/i
   validates :name, uniqueness: true
   validates :user, presence: true
+  validates :update_url, allow_nil: true, allow_blank: true, :format => { with: URI.regexp }
 
   before_save :generate_all_scripts
   before_create :make_sure_author
@@ -104,13 +107,23 @@ class Task < ApplicationRecord
       import_log << "Task #{task.name} updated from #{old_version} to #{task.version}."
     else
       task = Task.create(attrs)
-      import_log << "Imported new Task #{task.name}."
+      if task.valid?
+        import_log << "Imported new Task #{task.name}."
+      else
+        import_log += task.errors.full_messages
+      end
     end
     import_log
   end
 
   def self.import_from_yaml_file(file, user)
     import YAML.load(file.read), user
+  end
+
+  def self.import_from_url(url, user)
+    open(url, "rb") do |f|
+      import_from_yaml_file(f, user)
+    end
   end
 
   def to_h
