@@ -47,15 +47,10 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = current_user.tasks.create(task_params)
-
-    respond_to do |format|
-      if @task.valid?
-        format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
-      else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
-      end
+    if @task.valid?
+      redirect_to tasks_url, notice: 'Task was successfully created.'
+    else
+      render :new
     end
   end
 

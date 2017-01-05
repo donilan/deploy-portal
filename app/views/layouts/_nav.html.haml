@@ -11,17 +11,20 @@
       %ul.nav.navbar-nav
         - if current_user
           %li= link_to 'Tasks', tasks_path
-          %li= link_to 'Enviroments', env_groups_path
+          - if current_user.admin?
+            %li= link_to 'Enviroments', env_groups_path
+            %li= link_to 'Users', users_path
       %ul.nav.navbar-nav.pull-right
         - if current_user
+          - if current_user.admin?
+            %li
+              = link_to settings_path do
+                = fa_icon('cog')
+                Settings
           %li
-            = link_to settings_path do
-              = fa_icon('cog')
-              Settings
-          %li
-            = link_to user_path do
+            = link_to myaccount_users_path do
               = fa_icon('user')
-              My Account
+              = current_user.display
           %li
             = link_to destroy_user_session_path, class: "logout", method: :delete do
               = fa_icon('sign-out')

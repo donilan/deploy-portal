@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users, only: [:session, :omniauth_callbacks], :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, only: [:session, :omniauth_callbacks, :passwords],
+             :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
-
-  resource :user do
-    member do
+  resources :users do
+    collection do
       post :refresh_api_token
+      patch :update_password
+      get :myaccount
+    end
+    member do
+      post :reset_password
+      post :lock
+      post :unlock
     end
   end
+
   resources :env_groups
   resources :settings, only: [:index, :update, :edit]
   resources :tasks do

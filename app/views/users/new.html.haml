@@ -1,0 +1,6 @@
+= simple_form_for @user do | u |
+  = u.input :name
+  = u.input :email
+  = u.input :admin
+  .actions
+    = u.submit 'Save', class: 'btn btn-primary'

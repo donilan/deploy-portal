@@ -1,0 +1,46 @@
+= link_to 'Create new User', new_user_path, class: 'btn btn-primary'
+%hr
+%table.table
+  %thead
+    %tr
+      %th Base Information
+      %th Login Information
+      %th Other Information
+      %th Operation
+  %tbody
+    - @users.each do |u|
+      %tr
+        %td
+          %p
+            Name:
+            = u.name
+          %p
+            Email:
+            = u.email
+        %td
+          %p
+            - if u.current_sign_in_at
+              current user sign in at #{u.current_sign_in_at} with ip #{u.current_sign_in_ip}
+            - else
+              Never sign in before
+          %p
+            - if u.last_sign_in_at
+              Last user sign in at #{u.last_sign_in_at} with ip #{u.last_sign_in_ip}
+            - else
+              No Last sign in information
+        %td
+          %p
+            Is Admin:
+            = u.admin?
+          %p
+            Is Locked:
+            = u.access_locked?
+        %td
+          - if current_user.id != u.id
+            .btn-group
+              - if !u.access_locked?
+                = link_to 'Lock', lock_user_path(u), :method => :post, class: 'btn btn-warning btn-xs'
+              - else
+                = link_to 'Unlock', unlock_user_path(u), :method => :post, class: 'btn btn-success btn-xs'
+              = link_to 'Reset Password', reset_password_user_path(u), :method => :post, class: 'btn btn-default btn-xs '
+              = link_to 'Delete', user_path(u), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger btn-xs', title: 'Delete this task'
