@@ -8,7 +8,7 @@ A tool to execute scripts on server side via web UI.
 This tool makes for the one who like below:
 
 * There is one or more staging/testing server to update project all the time.
-* There is a QA team just want to provide them less permission to run perdefined script.
+* There is a QA team just want to provide them less permission to run predefined script.
 
 ## Requirements
 
