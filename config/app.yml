@@ -1,0 +1,16 @@
+# config/app.yml for rails-settings-cached
+defaults: &defaults
+  site: Deploy Portal II
+  gitlab_app_id: <%= ENV['GITLAB_KEY'] %>
+  gitlab_secret: <%= ENV['GITLAB_SECRET'] %>
+  # https://gitlab.YOURDOMAIN.com
+  gitlab_site: <%= ENV['GITLAB_SITE'] %>
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

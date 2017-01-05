@@ -148,6 +148,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     nenv (0.3.0)
+    nested_form (0.3.2)
     nio4r (1.2.1)
     nokogiri (1.7.0)
       mini_portile2 (~> 2.1.0)
@@ -195,6 +196,8 @@ GEM
       nokogiri (~> 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-settings-cached (0.6.5)
+      rails (>= 4.2.0)
     railties (5.0.1)
       actionpack (= 5.0.1)
       activesupport (= 5.0.1)
@@ -298,10 +301,12 @@ DEPENDENCIES
   jquery-rails
   kaminari
   listen (~> 3.0.5)
+  nested_form
   omniauth-gitlab
   omniauth-oauth2
   puma (~> 3.0)
   rails (~> 5.0.1)
+  rails-settings-cached
   rspec-rails
   sass-rails (~> 5.0)
   simple_form

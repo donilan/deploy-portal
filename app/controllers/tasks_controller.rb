@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy, :run]
+  before_action :must_be_admin!, only: [:edit, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
@@ -20,12 +21,16 @@ class TasksController < ApplicationController
   end
 
   def run
+    if @task.admin_only? && !current_user.admin?
+      flash[:alert] = "You don't have permission to do this"
+      return redirect_to(root_path) unless current_user.admin?
+    end
     @job = @task.start_new_job(current_user)
     @jobs = Job.first(10)
     redirect_to action: :index
-  rescue => e
-    flash[:alert]= e.message
-    redirect_to action: :index
+  # rescue => e
+  #   flash[:alert]= e.message
+  #   redirect_to action: :index
   end
 
   def import

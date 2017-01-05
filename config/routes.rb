@@ -7,7 +7,8 @@ Rails.application.routes.draw do
       post :refresh_api_token
     end
   end
-  resources :enviroments
+  resources :env_groups
+  resources :settings, only: [:index, :update, :edit]
   resources :tasks do
     member do
       post :run

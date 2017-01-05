@@ -72,3 +72,7 @@ gem 'charlock_holmes', '0.6.9.4'
 gem 'childprocess', '0.3.6'
 gem 'omniauth-oauth2'
 gem 'omniauth-gitlab'
+gem "rails-settings-cached"
+
+# https://github.com/ryanb/nested_form
+gem 'nested_form'

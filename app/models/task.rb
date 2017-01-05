@@ -19,6 +19,10 @@ class Task < ApplicationRecord
     env_group && env_group.envs.find_by(key: 'TIMEOUT').try(:value)
   end
 
+  def cwd
+    env_group && env_group.envs.find_by(key: 'CWD').try(:value)
+  end
+
   def start_new_job(user)
     raise Expcetion.new('You don\'t have permission to run this task.') if admin_only? && !user.admin?
     raise Exception.new('There is a job is running. please wait that job finish and try again.') if Runner.instance.running?

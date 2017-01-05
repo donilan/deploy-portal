@@ -14,15 +14,15 @@ class Runner
       Rails.logger.info "Start a thread to abort process when timeout."
       begin
         while running?
+          sleep 3
           abort_if_timeout
           update_build
-          sleep 5
         end
+        Rails.logger.info "Guard thread is finished without any errors."
       rescue => e
         Rails.logger.error "build check fail, reason: #{e.message}"
         Rails.logger.error e.backtrace.join("\n")
       end
-      Rails.logger.info "Guard thread is finished without any errors."
     }
   end
 

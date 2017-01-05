@@ -73,7 +73,7 @@ class Build
     @log_file = File.new(@job.log_path, 'w+', binmode: true)
     @process.io.stdout = @log_file
     @process.io.stderr = @log_file
-    # @process.cwd = project_dir
+    @process.cwd = task.cwd if task.cwd
 
     # TODO: need a better way to set envs
     task.env_group && task.env_group.envs.each do |env|

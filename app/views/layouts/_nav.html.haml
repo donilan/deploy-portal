@@ -5,19 +5,23 @@
         %span.sr-only Toggle navigation
         %i.icon-reorder
 
-      = link_to 'Deploy Portal II', root_path, class: "navbar-brand"
+      = link_to Setting.site, root_path, class: "navbar-brand"
 
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         - if current_user
           %li= link_to 'Tasks', tasks_path
-          %li= link_to 'Enviroments', enviroments_path
+          %li= link_to 'Enviroments', env_groups_path
       %ul.nav.navbar-nav.pull-right
         - if current_user
           %li
-            = link_to user_path do
+            = link_to settings_path do
               = fa_icon('cog')
               Settings
+          %li
+            = link_to user_path do
+              = fa_icon('user')
+              My Account
           %li
             = link_to destroy_user_session_path, class: "logout", method: :delete do
               = fa_icon('sign-out')

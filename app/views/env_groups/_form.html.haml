@@ -1,0 +1,16 @@
+= simple_nested_form_for @env_group do |f|
+  = f.input :name
+  - if @env_group.envs.count > 0
+    .row
+      .col-md-4 Key
+      .col-md-6 Value
+      .col-md-2 &nbsp;
+  = f.simple_fields_for :envs, @env_group.envs do |envs_form|
+    .row
+      .col-md-4= envs_form.input :key, label: false
+      .col-md-6= envs_form.input :value, label: false
+      .col-md-2= envs_form.link_to_remove 'X', class: 'btn btn-danger btn-sm'
+  .row
+    .actions.col-md-12
+      = f.link_to_add 'Add one Env', :envs, class: 'btn btn-primary'
+      = button_tag 'Save', type: 'submit', class: 'btn btn-primary'

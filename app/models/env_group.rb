@@ -5,6 +5,7 @@ class EnvGroup < ApplicationRecord
   validates :name, uniqueness: true
   has_many :envs
   has_many :tasks
+  accepts_nested_attributes_for :envs, reject_if: lambda { |v| v[:key].blank? }, allow_destroy: true
 
   attr_accessor :import_log
 

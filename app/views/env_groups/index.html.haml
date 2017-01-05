@@ -1,0 +1,11 @@
+= link_to 'Add Enviroment Group', new_env_group_path, class: 'btn btn-primary'
+
+%hr
+.row
+  - @env_groups.each_with_index do |g, i|
+    - @env_group = g
+    .col-md-6
+      .panel.panel-default
+        .panel-heading= g.name
+        .panel-body= render 'form'
+= render 'note'

@@ -1,0 +1,5 @@
+= form_for @setting, url: setting_path(@setting.var), method: :put do |f|
+  %label= @setting.var
+  = f.text_area :value, rows: 5, class: 'form-control'
+  .actions
+    = button_tag 'Save', type: 'submit', class: 'btn btn-primary'
