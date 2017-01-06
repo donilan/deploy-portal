@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = current_user.admin? ? Task.all : Task.all_without_admin_only
     @jobs = Job.first(10)
     respond_to do |format|
       format.html
@@ -27,9 +27,9 @@ class TasksController < ApplicationController
     end
     @job = @task.start_new_job(current_user)
     @jobs = Job.first(10)
+    redirect_to action: :index
   rescue => e
     flash[:alert]= e.message
-  ensure
     redirect_to action: :index
   end
 

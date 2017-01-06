@@ -16,6 +16,7 @@ class Task < ApplicationRecord
 
   before_save :generate_all_scripts
   before_create :make_sure_author
+  scope :all_without_admin_only, -> { where(admin_only: false) }
 
   attr_reader :import_logs
 
