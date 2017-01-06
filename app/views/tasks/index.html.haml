@@ -13,8 +13,8 @@
           = link_to new_task_path, class: 'btn btn-xs btn-default' do
             = fa_icon 'plus'
             Add Task
-          = render 'upload_from_url'
-          = render 'upload_task'
+          = render 'upload_from_url' if current_user.admin?
+          = render 'upload_task' if current_user.admin?
       %table.table
         %thead
           %tr
