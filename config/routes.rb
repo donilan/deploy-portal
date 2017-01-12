@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  root to: redirect('tasks')
+  root 'tasks#index'
 
   namespace :api do
     get 'tasks/:id/run' => 'tasks#run', as: 'tasks_run'
