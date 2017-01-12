@@ -89,7 +89,7 @@ Rails.application.configure do
     :port => Setting.smtp_port.to_i,
     :user_name => Setting.smtp_user_name,
     :password => Setting.smtp_password,
-    :authentication => Setting.smtp_authentication.to_sym,
+    :authentication => Setting.smtp_authentication.try(:to_sym),
     :enable_starttls_auto => Setting.smtp_enable_starttls_auto.to_s.downcase == 'true'
   }
 end
