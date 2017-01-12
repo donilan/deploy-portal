@@ -24,3 +24,5 @@
 /vendor
 /config/app.yml
 /config/local_env.yml
+/.ruby-version
+/public/assets
