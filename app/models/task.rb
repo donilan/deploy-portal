@@ -8,7 +8,7 @@ class Task < ApplicationRecord
   friendly_id :name
   belongs_to :user
   belongs_to :env_group
-  has_many :jobs
+  has_many :jobs, dependent: :destroy
   validates_format_of :name, with: /\A[a-z0-9\-_]+\Z/i
   validates :name, uniqueness: true
   validates :user, presence: true
