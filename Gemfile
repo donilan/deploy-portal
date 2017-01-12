@@ -76,3 +76,4 @@ gem "rails-settings-cached"
 
 # https://github.com/ryanb/nested_form
 gem 'nested_form'
+gem 'thin'
