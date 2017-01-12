@@ -16,6 +16,11 @@
       = link_to 'here', user_path
       to enable API url
 
+- if @task.env_group
+  %h3 Environments
+  %pre
+    %code.bash><= @task.env_group.envs.map { |env| "#{env.key} = #{env.value}" }.join("\n")
+
 %h3 Pre-script
 %pre
   %code.bash><= File.read @task.script_path
