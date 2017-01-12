@@ -29,6 +29,9 @@ chdir APP_ROOT do
   puts "\n== Removing old logs and tempfiles =="
   system! 'bin/rails log:clear tmp:clear'
 
+  puts "\n== Delete old task logs and tasks"
+  system! "rm -rf tasks task_llog"
+
   puts "\n== Restarting application server =="
   system! 'bin/rails restart'
 end

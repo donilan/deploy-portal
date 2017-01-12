@@ -1,12 +1,20 @@
 # config/app.yml for rails-settings-cached
 defaults: &defaults
   site: Deploy Portal II
-  notifiers: d@example.com,devops@example.com
-  email_from: devops@example.com
+  # devops@example.com
+  notifiers: <%= ENV['NOTIFIERS'] %>
+  # devops@example.com
+  email_from: <%= ENV['EMAIL_FROM'] %>
   gitlab_app_id: <%= ENV['GITLAB_KEY'] %>
   gitlab_secret: <%= ENV['GITLAB_SECRET'] %>
   # https://gitlab.YOURDOMAIN.com
   gitlab_site: <%= ENV['GITLAB_SITE'] %>
+  smtp_address: <%= ENV['SMTP_ADDRESS'] %>
+  smtp_port: <%= ENV['SMTP_PORT'] %>
+  smtp_user_name: <%= ENV['SMTP_USER_NAME'] %>
+  smtp_password: <%= ENV['SMTP_PASSWORD'] %>
+  smtp_authentication: <%= ENV['SMTP_AUTHENTICATION'] || 'login' %>
+  smtp_enable_starttls_auto: <%= ENV['ENABLE_STARTTLS_AUTO'] || true %>
 
 development:
   <<: *defaults

@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+export RAILS_SERVE_STATIC_FILES=1
+export RAILS_ENV=production
+
+rake db:migrate assets:precompile
+rails s
