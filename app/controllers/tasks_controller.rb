@@ -28,7 +28,7 @@ class TasksController < ApplicationController
     @job = @task.start_new_job(current_user)
     @jobs = Job.first(10)
     redirect_to action: :index
-  rescue => e
+  rescue Exception => e
     flash[:alert]= e.message
     redirect_to action: :index
   end
