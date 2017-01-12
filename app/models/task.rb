@@ -95,11 +95,11 @@ class Task < ApplicationRecord
     if task && !task.version_less_than(attrs[:version])
       return ["task #{attrs[:name]} version #{attrs[:version]} is less or equals than #{task.version}, Ignored."]
     end
-    group = EnvGroup.find_by(name: hash[:env_group][:name]) if hash[:env_group]
+    group = EnvGroup.find_or_create_by(name: hash[:env_group][:name])
     if group && hash[:env_group]
       hash[:env_group][:envs].each { |env|
         unless group.envs.find_by(key: env[:key])
-          groups.envs.create(key: env[:key], value: env[:value])
+          group.envs.create!(key: env[:key], value: env[:value])
           import_log << "Imported env #{env[:key]} with value #{env[:value]}."
         else
           import_log << "Env key #{env[:key]} already exists, ignored."
