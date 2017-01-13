@@ -2,6 +2,7 @@
 defaults: &defaults
   site: Deploy Portal II
   # devops@example.com
+  host: localhost
   notifiers: <%= ENV['NOTIFIERS'] %>
   # devops@example.com
   email_from: <%= ENV['EMAIL_FROM'] %>
