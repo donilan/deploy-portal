@@ -18,7 +18,7 @@ class Build
   end
 
   def run
-    Bundler.with_clean_env { execute("setsid bash -cl #{task.script_path}") }
+    Bundler.with_clean_env { execute("setsid #{task.script_path}") }
   end
 
   def state
