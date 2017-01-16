@@ -75,10 +75,10 @@ class Build
     @process.io.stderr = @log_file
     @process.cwd = task.cwd if task.cwd
 
-    # TODO: need a better way to set envs
-    task.env_group && task.env_group.envs.each do |env|
-      @process.environment[env.key] = env.value
-    end
+    # all envs already exported by pre-script
+    # task.env_group && task.env_group.envs.each do |env|
+    #   @process.environment[env.key] = env.value
+    # end
     @process.start
   rescue => e
     Rails.logger.error "excute fail, reason: #{e.message}"

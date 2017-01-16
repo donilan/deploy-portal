@@ -49,8 +49,11 @@ class Task < ApplicationRecord
     # f.puts %|set -e|
     # f.puts %|trap 'kill -s INT 0' EXIT|
     env_group && env_group.envs.each do |env|
+      f.puts %|echo export #{env.key}="#{env.value}"|
       f.puts %|export #{env.key}="#{env.value}"|
     end
+    f.puts %|echo cd #{cwd}| if cwd
+    f.puts %|cd #{cwd}| if cwd
     f.puts %|#{raw_script_path}|
     f.close
   end
